@@ -3,8 +3,8 @@ package apijson_test
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/stainless-sdks/cloneforce-go/internal/apijson"
-	"github.com/stainless-sdks/cloneforce-go/packages/param"
+	"github.com/clone-global/cloneforce-go/internal/apijson"
+	"github.com/clone-global/cloneforce-go/packages/param"
 	"reflect"
 	"testing"
 )

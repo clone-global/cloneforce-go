@@ -2,7 +2,7 @@ package apijson
 
 import (
 	"errors"
-	"github.com/stainless-sdks/cloneforce-go/packages/param"
+	"github.com/clone-global/cloneforce-go/packages/param"
 	"reflect"
 
 	"github.com/tidwall/gjson"

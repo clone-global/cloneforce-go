@@ -7,8 +7,8 @@ import (
 	"net/http"
 	"net/http/httputil"
 
-	"github.com/stainless-sdks/cloneforce-go/internal/apijson"
-	"github.com/stainless-sdks/cloneforce-go/packages/respjson"
+	"github.com/clone-global/cloneforce-go/internal/apijson"
+	"github.com/clone-global/cloneforce-go/packages/respjson"
 )
 
 // Error represents an error that originates from the API, i.e. when a request is

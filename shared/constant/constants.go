@@ -3,7 +3,7 @@
 package constant
 
 import (
-	shimjson "github.com/stainless-sdks/cloneforce-go/internal/encoding/json"
+	shimjson "github.com/clone-global/cloneforce-go/internal/encoding/json"
 )
 
 type Constant[T any] interface {

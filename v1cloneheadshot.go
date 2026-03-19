@@ -11,9 +11,9 @@ import (
 	"net/url"
 	"slices"
 
-	shimjson "github.com/stainless-sdks/cloneforce-go/internal/encoding/json"
-	"github.com/stainless-sdks/cloneforce-go/internal/requestconfig"
-	"github.com/stainless-sdks/cloneforce-go/option"
+	shimjson "github.com/clone-global/cloneforce-go/internal/encoding/json"
+	"github.com/clone-global/cloneforce-go/internal/requestconfig"
+	"github.com/clone-global/cloneforce-go/option"
 )
 
 // Clone profile management and asset generation

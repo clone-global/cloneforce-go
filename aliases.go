@@ -3,8 +3,8 @@
 package cloneforce
 
 import (
-	"github.com/stainless-sdks/cloneforce-go/internal/apierror"
-	"github.com/stainless-sdks/cloneforce-go/packages/param"
+	"github.com/clone-global/cloneforce-go/internal/apierror"
+	"github.com/clone-global/cloneforce-go/packages/param"
 )
 
 // aliased to make [param.APIUnion] private when embedding
