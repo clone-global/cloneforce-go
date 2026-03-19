@@ -9,7 +9,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/stainless-sdks/cloneforce-go/packages/param"
+	"github.com/clone-global/cloneforce-go/packages/param"
 )
 
 var encoders sync.Map // map[reflect.Type]encoderFunc

@@ -3,7 +3,7 @@
 package cloneforce
 
 import (
-	"github.com/stainless-sdks/cloneforce-go/option"
+	"github.com/clone-global/cloneforce-go/option"
 )
 
 // V1IntegrationService contains methods and other services that help with

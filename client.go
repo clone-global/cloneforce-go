@@ -8,8 +8,8 @@ import (
 	"os"
 	"slices"
 
-	"github.com/stainless-sdks/cloneforce-go/internal/requestconfig"
-	"github.com/stainless-sdks/cloneforce-go/option"
+	"github.com/clone-global/cloneforce-go/internal/requestconfig"
+	"github.com/clone-global/cloneforce-go/option"
 )
 
 // Client creates a struct with services and top level methods that help with

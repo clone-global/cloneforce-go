@@ -18,10 +18,10 @@ import (
 	"strings"
 	"time"
 
-	"github.com/stainless-sdks/cloneforce-go/internal"
-	"github.com/stainless-sdks/cloneforce-go/internal/apierror"
-	"github.com/stainless-sdks/cloneforce-go/internal/apiform"
-	"github.com/stainless-sdks/cloneforce-go/internal/apiquery"
+	"github.com/clone-global/cloneforce-go/internal"
+	"github.com/clone-global/cloneforce-go/internal/apierror"
+	"github.com/clone-global/cloneforce-go/internal/apiform"
+	"github.com/clone-global/cloneforce-go/internal/apiquery"
 )
 
 func getDefaultHeaders() map[string]string {

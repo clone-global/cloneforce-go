@@ -2,7 +2,7 @@
 package json
 
 import (
-	"github.com/stainless-sdks/cloneforce-go/internal/encoding/json/shims"
+	"github.com/clone-global/cloneforce-go/internal/encoding/json/shims"
 	"reflect"
 	"time"
 )

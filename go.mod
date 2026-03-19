@@ -1,4 +1,4 @@
-module github.com/stainless-sdks/cloneforce-go
+module github.com/clone-global/cloneforce-go
 
 go 1.22
 

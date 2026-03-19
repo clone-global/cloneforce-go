@@ -1,8 +1,8 @@
 package sentinel_test
 
 import (
-	"github.com/stainless-sdks/cloneforce-go/internal/encoding/json/sentinel"
-	"github.com/stainless-sdks/cloneforce-go/packages/param"
+	"github.com/clone-global/cloneforce-go/internal/encoding/json/sentinel"
+	"github.com/clone-global/cloneforce-go/packages/param"
 	"reflect"
 	"slices"
 	"testing"

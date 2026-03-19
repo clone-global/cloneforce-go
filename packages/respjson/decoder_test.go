@@ -3,8 +3,8 @@ package respjson_test
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/stainless-sdks/cloneforce-go/internal/apijson"
-	rj "github.com/stainless-sdks/cloneforce-go/packages/respjson"
+	"github.com/clone-global/cloneforce-go/internal/apijson"
+	rj "github.com/clone-global/cloneforce-go/packages/respjson"
 	"reflect"
 	"testing"
 )

@@ -2,7 +2,7 @@ package param
 
 import (
 	"encoding/json"
-	"github.com/stainless-sdks/cloneforce-go/internal/encoding/json/sentinel"
+	"github.com/clone-global/cloneforce-go/internal/encoding/json/sentinel"
 	"reflect"
 )
 

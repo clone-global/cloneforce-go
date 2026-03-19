@@ -10,9 +10,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/stainless-sdks/cloneforce-go"
-	"github.com/stainless-sdks/cloneforce-go/internal"
-	"github.com/stainless-sdks/cloneforce-go/option"
+	"github.com/clone-global/cloneforce-go"
+	"github.com/clone-global/cloneforce-go/internal"
+	"github.com/clone-global/cloneforce-go/option"
 )
 
 type closureTransport struct {
