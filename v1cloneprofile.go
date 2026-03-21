@@ -11,11 +11,11 @@ import (
 	"slices"
 	"time"
 
-	"github.com/stainless-sdks/cloneforce-go/internal/apijson"
-	"github.com/stainless-sdks/cloneforce-go/internal/requestconfig"
-	"github.com/stainless-sdks/cloneforce-go/option"
-	"github.com/stainless-sdks/cloneforce-go/packages/param"
-	"github.com/stainless-sdks/cloneforce-go/packages/respjson"
+	"github.com/clone-global/cloneforce-go/internal/apijson"
+	"github.com/clone-global/cloneforce-go/internal/requestconfig"
+	"github.com/clone-global/cloneforce-go/option"
+	"github.com/clone-global/cloneforce-go/packages/param"
+	"github.com/clone-global/cloneforce-go/packages/respjson"
 )
 
 // Clone profile management and asset generation

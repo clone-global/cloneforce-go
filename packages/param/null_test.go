@@ -2,7 +2,7 @@ package param_test
 
 import (
 	"encoding/json"
-	"github.com/stainless-sdks/cloneforce-go/packages/param"
+	"github.com/clone-global/cloneforce-go/packages/param"
 	"testing"
 )
 

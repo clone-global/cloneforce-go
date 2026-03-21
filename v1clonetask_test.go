@@ -9,9 +9,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/stainless-sdks/cloneforce-go"
-	"github.com/stainless-sdks/cloneforce-go/internal/testutil"
-	"github.com/stainless-sdks/cloneforce-go/option"
+	"github.com/clone-global/cloneforce-go"
+	"github.com/clone-global/cloneforce-go/internal/testutil"
+	"github.com/clone-global/cloneforce-go/option"
 )
 
 func TestV1CloneTaskNewWithOptionalParams(t *testing.T) {

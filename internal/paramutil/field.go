@@ -1,8 +1,8 @@
 package paramutil
 
 import (
-	"github.com/stainless-sdks/cloneforce-go/packages/param"
-	"github.com/stainless-sdks/cloneforce-go/packages/respjson"
+	"github.com/clone-global/cloneforce-go/packages/param"
+	"github.com/clone-global/cloneforce-go/packages/respjson"
 )
 
 func AddrIfPresent[T comparable](v param.Opt[T]) *T {
