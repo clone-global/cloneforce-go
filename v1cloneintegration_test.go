@@ -100,7 +100,7 @@ func TestV1CloneIntegrationDelete(t *testing.T) {
 	}
 }
 
-func TestV1CloneIntegrationPhone(t *testing.T) {
+func TestV1CloneIntegrationNewPhone(t *testing.T) {
 	t.Skip("Mock server tests are disabled")
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
@@ -113,10 +113,10 @@ func TestV1CloneIntegrationPhone(t *testing.T) {
 		option.WithBaseURL(baseURL),
 		option.WithAPIKey("My API Key"),
 	)
-	_, err := client.V1.Clones.Integrations.Phone(
+	_, err := client.V1.Clones.Integrations.NewPhone(
 		context.TODO(),
 		"cloneId",
-		cloneforce.V1CloneIntegrationPhoneParams{
+		cloneforce.V1CloneIntegrationNewPhoneParams{
 			Phone: "phone",
 		},
 	)
@@ -129,7 +129,7 @@ func TestV1CloneIntegrationPhone(t *testing.T) {
 	}
 }
 
-func TestV1CloneIntegrationGetSetup(t *testing.T) {
+func TestV1CloneIntegrationGetSetupURL(t *testing.T) {
 	t.Skip("Mock server tests are disabled")
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
@@ -142,10 +142,10 @@ func TestV1CloneIntegrationGetSetup(t *testing.T) {
 		option.WithBaseURL(baseURL),
 		option.WithAPIKey("My API Key"),
 	)
-	_, err := client.V1.Clones.Integrations.GetSetup(
+	_, err := client.V1.Clones.Integrations.GetSetupURL(
 		context.TODO(),
-		cloneforce.V1CloneIntegrationGetSetupParamsTypeEmail,
-		cloneforce.V1CloneIntegrationGetSetupParams{
+		"integrationId",
+		cloneforce.V1CloneIntegrationGetSetupURLParams{
 			CloneID: "cloneId",
 		},
 	)

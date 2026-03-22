@@ -58,7 +58,7 @@ func (r *V1CloneIntegrationService) Get(ctx context.Context, integrationID strin
 		err = errors.New("missing required integrationId parameter")
 		return nil, err
 	}
-	path := fmt.Sprintf("api/v1/clones/%s/integrations/%s", url.PathEscape(query.CloneID), url.PathEscape(integrationID))
+	path := fmt.Sprintf("public/v1/clones/%s/integrations/%s", url.PathEscape(query.CloneID), url.PathEscape(integrationID))
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
 	return res, err
 }
@@ -70,7 +70,7 @@ func (r *V1CloneIntegrationService) List(ctx context.Context, cloneID string, qu
 		err = errors.New("missing required cloneId parameter")
 		return nil, err
 	}
-	path := fmt.Sprintf("api/v1/clones/%s/integrations", url.PathEscape(cloneID))
+	path := fmt.Sprintf("public/v1/clones/%s/integrations", url.PathEscape(cloneID))
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
 	return res, err
 }
@@ -87,7 +87,7 @@ func (r *V1CloneIntegrationService) Delete(ctx context.Context, integrationID st
 		err = errors.New("missing required integrationId parameter")
 		return nil, err
 	}
-	path := fmt.Sprintf("api/v1/clones/%s/integrations/%s", url.PathEscape(body.CloneID), url.PathEscape(integrationID))
+	path := fmt.Sprintf("public/v1/clones/%s/integrations/%s", url.PathEscape(body.CloneID), url.PathEscape(integrationID))
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodDelete, path, nil, &res, opts...)
 	return res, err
 }
@@ -95,13 +95,13 @@ func (r *V1CloneIntegrationService) Delete(ctx context.Context, integrationID st
 // Purchases a phone number and provisions it for clone voice calls. Requires
 // sufficient account credits. Creates a Twilio number, ElevenLabs voice agent, and
 // billing subscription.
-func (r *V1CloneIntegrationService) Phone(ctx context.Context, cloneID string, body V1CloneIntegrationPhoneParams, opts ...option.RequestOption) (res *V1CloneIntegrationPhoneResponse, err error) {
+func (r *V1CloneIntegrationService) NewPhone(ctx context.Context, cloneID string, body V1CloneIntegrationNewPhoneParams, opts ...option.RequestOption) (res *V1CloneIntegrationNewPhoneResponse, err error) {
 	opts = slices.Concat(r.options, opts)
 	if cloneID == "" {
 		err = errors.New("missing required cloneId parameter")
 		return nil, err
 	}
-	path := fmt.Sprintf("api/v1/clones/%s/integrations/phone", url.PathEscape(cloneID))
+	path := fmt.Sprintf("public/v1/clones/%s/integrations/phone", url.PathEscape(cloneID))
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, &res, opts...)
 	return res, err
 }
@@ -109,13 +109,17 @@ func (r *V1CloneIntegrationService) Phone(ctx context.Context, cloneID string, b
 // Returns a browser URL for the OAuth-based setup flow. Supported types: `email`,
 // `msteams`. Present this URL to the user and poll the integrations list to detect
 // completion.
-func (r *V1CloneIntegrationService) GetSetup(ctx context.Context, type_ V1CloneIntegrationGetSetupParamsType, query V1CloneIntegrationGetSetupParams, opts ...option.RequestOption) (res *V1CloneIntegrationGetSetupResponse, err error) {
+func (r *V1CloneIntegrationService) GetSetupURL(ctx context.Context, integrationID string, query V1CloneIntegrationGetSetupURLParams, opts ...option.RequestOption) (res *V1CloneIntegrationGetSetupURLResponse, err error) {
 	opts = slices.Concat(r.options, opts)
 	if query.CloneID == "" {
 		err = errors.New("missing required cloneId parameter")
 		return nil, err
 	}
-	path := fmt.Sprintf("api/v1/clones/%s/integrations/%v/setup", url.PathEscape(query.CloneID), type_)
+	if integrationID == "" {
+		err = errors.New("missing required integrationId parameter")
+		return nil, err
+	}
+	path := fmt.Sprintf("public/v1/clones/%s/integrations/%s/setup", url.PathEscape(query.CloneID), url.PathEscape(integrationID))
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
 	return res, err
 }
@@ -332,7 +336,7 @@ func (r *V1CloneIntegrationDeleteResponse) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
-type V1CloneIntegrationPhoneResponse struct {
+type V1CloneIntegrationNewPhoneResponse struct {
 	ID          string `json:"id" api:"required"`
 	PhoneNumber string `json:"phoneNumber" api:"required"`
 	Status      string `json:"status" api:"required"`
@@ -347,12 +351,12 @@ type V1CloneIntegrationPhoneResponse struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r V1CloneIntegrationPhoneResponse) RawJSON() string { return r.JSON.raw }
-func (r *V1CloneIntegrationPhoneResponse) UnmarshalJSON(data []byte) error {
+func (r V1CloneIntegrationNewPhoneResponse) RawJSON() string { return r.JSON.raw }
+func (r *V1CloneIntegrationNewPhoneResponse) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
-type V1CloneIntegrationGetSetupResponse struct {
+type V1CloneIntegrationGetSetupURLResponse struct {
 	SetupURL string `json:"setupUrl" api:"required"`
 	Type     string `json:"type" api:"required"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
@@ -365,8 +369,8 @@ type V1CloneIntegrationGetSetupResponse struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r V1CloneIntegrationGetSetupResponse) RawJSON() string { return r.JSON.raw }
-func (r *V1CloneIntegrationGetSetupResponse) UnmarshalJSON(data []byte) error {
+func (r V1CloneIntegrationGetSetupURLResponse) RawJSON() string { return r.JSON.raw }
+func (r *V1CloneIntegrationGetSetupURLResponse) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
@@ -407,28 +411,21 @@ type V1CloneIntegrationDeleteParams struct {
 	paramObj
 }
 
-type V1CloneIntegrationPhoneParams struct {
+type V1CloneIntegrationNewPhoneParams struct {
 	// Phone number to purchase (from the available numbers search)
 	Phone string `json:"phone" api:"required"`
 	paramObj
 }
 
-func (r V1CloneIntegrationPhoneParams) MarshalJSON() (data []byte, err error) {
-	type shadow V1CloneIntegrationPhoneParams
+func (r V1CloneIntegrationNewPhoneParams) MarshalJSON() (data []byte, err error) {
+	type shadow V1CloneIntegrationNewPhoneParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
-func (r *V1CloneIntegrationPhoneParams) UnmarshalJSON(data []byte) error {
+func (r *V1CloneIntegrationNewPhoneParams) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
-type V1CloneIntegrationGetSetupParams struct {
+type V1CloneIntegrationGetSetupURLParams struct {
 	CloneID string `path:"cloneId" api:"required" json:"-"`
 	paramObj
 }
-
-type V1CloneIntegrationGetSetupParamsType string
-
-const (
-	V1CloneIntegrationGetSetupParamsTypeEmail   V1CloneIntegrationGetSetupParamsType = "email"
-	V1CloneIntegrationGetSetupParamsTypeMsteams V1CloneIntegrationGetSetupParamsType = "msteams"
-)

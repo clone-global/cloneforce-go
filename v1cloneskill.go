@@ -49,7 +49,7 @@ func (r *V1CloneSkillService) New(ctx context.Context, cloneID string, body V1Cl
 		err = errors.New("missing required cloneId parameter")
 		return nil, err
 	}
-	path := fmt.Sprintf("api/v1/clones/%s/skills", url.PathEscape(cloneID))
+	path := fmt.Sprintf("public/v1/clones/%s/skills", url.PathEscape(cloneID))
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, &res, opts...)
 	return res, err
 }
@@ -65,7 +65,7 @@ func (r *V1CloneSkillService) Update(ctx context.Context, skillName string, para
 		err = errors.New("missing required skillName parameter")
 		return nil, err
 	}
-	path := fmt.Sprintf("api/v1/clones/%s/skills/%s", url.PathEscape(params.CloneID), url.PathEscape(skillName))
+	path := fmt.Sprintf("public/v1/clones/%s/skills/%s", url.PathEscape(params.CloneID), url.PathEscape(skillName))
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPatch, path, params, &res, opts...)
 	return res, err
 }
@@ -77,7 +77,7 @@ func (r *V1CloneSkillService) List(ctx context.Context, cloneID string, query V1
 		err = errors.New("missing required cloneId parameter")
 		return nil, err
 	}
-	path := fmt.Sprintf("api/v1/clones/%s/skills", url.PathEscape(cloneID))
+	path := fmt.Sprintf("public/v1/clones/%s/skills", url.PathEscape(cloneID))
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
 	return res, err
 }
@@ -93,7 +93,7 @@ func (r *V1CloneSkillService) Delete(ctx context.Context, skillName string, body
 		err = errors.New("missing required skillName parameter")
 		return nil, err
 	}
-	path := fmt.Sprintf("api/v1/clones/%s/skills/%s", url.PathEscape(body.CloneID), url.PathEscape(skillName))
+	path := fmt.Sprintf("public/v1/clones/%s/skills/%s", url.PathEscape(body.CloneID), url.PathEscape(skillName))
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodDelete, path, nil, &res, opts...)
 	return res, err
 }

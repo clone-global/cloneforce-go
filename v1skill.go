@@ -47,7 +47,7 @@ func (r *V1SkillService) Get(ctx context.Context, skillID string, query V1SkillG
 		err = errors.New("missing required skillId parameter")
 		return nil, err
 	}
-	path := fmt.Sprintf("api/v1/skills/%s", url.PathEscape(skillID))
+	path := fmt.Sprintf("public/v1/skills/%s", url.PathEscape(skillID))
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
 	return res, err
 }
@@ -56,7 +56,7 @@ func (r *V1SkillService) Get(ctx context.Context, skillID string, query V1SkillG
 // clone.
 func (r *V1SkillService) Search(ctx context.Context, query V1SkillSearchParams, opts ...option.RequestOption) (res *V1SkillSearchResponse, err error) {
 	opts = slices.Concat(r.options, opts)
-	path := "api/v1/skills/search"
+	path := "public/v1/skills/search"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
 	return res, err
 }
