@@ -53,7 +53,7 @@ func (r *V1CloneSkillConnectionService) Update(ctx context.Context, settingName 
 		err = errors.New("missing required settingName parameter")
 		return nil, err
 	}
-	path := fmt.Sprintf("api/v1/clones/%s/skills/%s/connections/%s", url.PathEscape(params.CloneID), url.PathEscape(params.SkillName), url.PathEscape(settingName))
+	path := fmt.Sprintf("public/v1/clones/%s/skills/%s/connections/%s", url.PathEscape(params.CloneID), url.PathEscape(params.SkillName), url.PathEscape(settingName))
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPut, path, params, &res, opts...)
 	return res, err
 }
@@ -70,7 +70,7 @@ func (r *V1CloneSkillConnectionService) List(ctx context.Context, skillName stri
 		err = errors.New("missing required skillName parameter")
 		return nil, err
 	}
-	path := fmt.Sprintf("api/v1/clones/%s/skills/%s/connections", url.PathEscape(query.CloneID), url.PathEscape(skillName))
+	path := fmt.Sprintf("public/v1/clones/%s/skills/%s/connections", url.PathEscape(query.CloneID), url.PathEscape(skillName))
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
 	return res, err
 }

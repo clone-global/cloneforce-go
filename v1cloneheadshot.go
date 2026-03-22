@@ -50,7 +50,7 @@ func (r *V1CloneHeadshotService) Generate(ctx context.Context, cloneID string, b
 		err = errors.New("missing required cloneId parameter")
 		return nil, err
 	}
-	path := fmt.Sprintf("api/v1/clones/%s/headshot/generate", url.PathEscape(cloneID))
+	path := fmt.Sprintf("public/v1/clones/%s/headshot/generate", url.PathEscape(cloneID))
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, &res, opts...)
 	return res, err
 }

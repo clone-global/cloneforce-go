@@ -43,7 +43,7 @@ func NewV1ConnectionService(opts ...option.RequestOption) (r V1ConnectionService
 // Creates a new key-value connection credential.
 func (r *V1ConnectionService) New(ctx context.Context, body V1ConnectionNewParams, opts ...option.RequestOption) (res *ConnectionDetail, err error) {
 	opts = slices.Concat(r.options, opts)
-	path := "api/v1/connections"
+	path := "public/v1/connections"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, &res, opts...)
 	return res, err
 }
@@ -55,7 +55,7 @@ func (r *V1ConnectionService) Get(ctx context.Context, connectionID string, opts
 		err = errors.New("missing required connectionId parameter")
 		return nil, err
 	}
-	path := fmt.Sprintf("api/v1/connections/%s", url.PathEscape(connectionID))
+	path := fmt.Sprintf("public/v1/connections/%s", url.PathEscape(connectionID))
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
 	return res, err
 }
@@ -68,7 +68,7 @@ func (r *V1ConnectionService) Update(ctx context.Context, connectionID string, b
 		err = errors.New("missing required connectionId parameter")
 		return nil, err
 	}
-	path := fmt.Sprintf("api/v1/connections/%s", url.PathEscape(connectionID))
+	path := fmt.Sprintf("public/v1/connections/%s", url.PathEscape(connectionID))
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPatch, path, body, &res, opts...)
 	return res, err
 }
@@ -76,7 +76,7 @@ func (r *V1ConnectionService) Update(ctx context.Context, connectionID string, b
 // Returns all connections in the organization.
 func (r *V1ConnectionService) List(ctx context.Context, query V1ConnectionListParams, opts ...option.RequestOption) (res *V1ConnectionListResponse, err error) {
 	opts = slices.Concat(r.options, opts)
-	path := "api/v1/connections"
+	path := "public/v1/connections"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
 	return res, err
 }
@@ -88,7 +88,7 @@ func (r *V1ConnectionService) Delete(ctx context.Context, connectionID string, o
 		err = errors.New("missing required connectionId parameter")
 		return nil, err
 	}
-	path := fmt.Sprintf("api/v1/connections/%s", url.PathEscape(connectionID))
+	path := fmt.Sprintf("public/v1/connections/%s", url.PathEscape(connectionID))
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodDelete, path, nil, &res, opts...)
 	return res, err
 }
@@ -97,7 +97,7 @@ func (r *V1ConnectionService) Delete(ctx context.Context, connectionID string, o
 // provision URL to the user to complete the OAuth consent flow.
 func (r *V1ConnectionService) NewOAuth(ctx context.Context, body V1ConnectionNewOAuthParams, opts ...option.RequestOption) (res *OAuthProvision, err error) {
 	opts = slices.Concat(r.options, opts)
-	path := "api/v1/connections/oauth"
+	path := "public/v1/connections/oauth"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, &res, opts...)
 	return res, err
 }
@@ -109,7 +109,7 @@ func (r *V1ConnectionService) GetStatus(ctx context.Context, connectionID string
 		err = errors.New("missing required connectionId parameter")
 		return nil, err
 	}
-	path := fmt.Sprintf("api/v1/connections/%s/status", url.PathEscape(connectionID))
+	path := fmt.Sprintf("public/v1/connections/%s/status", url.PathEscape(connectionID))
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
 	return res, err
 }
@@ -122,7 +122,7 @@ func (r *V1ConnectionService) Refresh(ctx context.Context, connectionID string, 
 		err = errors.New("missing required connectionId parameter")
 		return nil, err
 	}
-	path := fmt.Sprintf("api/v1/connections/%s/refresh", url.PathEscape(connectionID))
+	path := fmt.Sprintf("public/v1/connections/%s/refresh", url.PathEscape(connectionID))
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, nil, &res, opts...)
 	return res, err
 }
@@ -134,7 +134,7 @@ func (r *V1ConnectionService) ReprovisionOAuth(ctx context.Context, connectionID
 		err = errors.New("missing required connectionId parameter")
 		return nil, err
 	}
-	path := fmt.Sprintf("api/v1/connections/%s/reprovision", url.PathEscape(connectionID))
+	path := fmt.Sprintf("public/v1/connections/%s/reprovision", url.PathEscape(connectionID))
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, nil, &res, opts...)
 	return res, err
 }
@@ -150,7 +150,7 @@ type ConnectionDetail struct {
 	AcquiredPermissions []string          `json:"acquiredPermissions"`
 	ErrorReason         string            `json:"errorReason"`
 	ExpiresAt           time.Time         `json:"expiresAt" format:"date-time"`
-	ExtraFields         map[string]string `json:"extraFields"`
+	Metadata            map[string]string `json:"metadata"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
 		ID                  respjson.Field
@@ -163,7 +163,7 @@ type ConnectionDetail struct {
 		AcquiredPermissions respjson.Field
 		ErrorReason         respjson.Field
 		ExpiresAt           respjson.Field
-		ExtraFields         respjson.Field
+		Metadata            respjson.Field
 		ExtraFields         map[string]respjson.Field
 		raw                 string
 	} `json:"-"`

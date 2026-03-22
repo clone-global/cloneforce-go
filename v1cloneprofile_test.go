@@ -14,7 +14,7 @@ import (
 	"github.com/clone-global/cloneforce-go/option"
 )
 
-func TestV1CloneProfileList(t *testing.T) {
+func TestV1CloneProfileGet(t *testing.T) {
 	t.Skip("Mock server tests are disabled")
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
@@ -27,7 +27,7 @@ func TestV1CloneProfileList(t *testing.T) {
 		option.WithBaseURL(baseURL),
 		option.WithAPIKey("My API Key"),
 	)
-	_, err := client.V1.Clones.Profile.List(context.TODO(), "cloneId")
+	_, err := client.V1.Clones.Profile.Get(context.TODO(), "cloneId")
 	if err != nil {
 		var apierr *cloneforce.Error
 		if errors.As(err, &apierr) {
@@ -37,7 +37,7 @@ func TestV1CloneProfileList(t *testing.T) {
 	}
 }
 
-func TestV1CloneProfilePatchAllWithOptionalParams(t *testing.T) {
+func TestV1CloneProfileUpdateWithOptionalParams(t *testing.T) {
 	t.Skip("Mock server tests are disabled")
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
@@ -50,10 +50,10 @@ func TestV1CloneProfilePatchAllWithOptionalParams(t *testing.T) {
 		option.WithBaseURL(baseURL),
 		option.WithAPIKey("My API Key"),
 	)
-	_, err := client.V1.Clones.Profile.PatchAll(
+	_, err := client.V1.Clones.Profile.Update(
 		context.TODO(),
 		"cloneId",
-		cloneforce.V1CloneProfilePatchAllParams{
+		cloneforce.V1CloneProfileUpdateParams{
 			AppearanceDesc:     cloneforce.String("appearanceDesc"),
 			Birthdate:          cloneforce.Time(time.Now()),
 			CareerDesc:         cloneforce.String("careerDesc"),

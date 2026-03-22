@@ -42,6 +42,8 @@ type V1CloneService struct {
 	Integrations V1CloneIntegrationService
 	// Task run history
 	Activity V1CloneActivityService
+	// Chat sessions and completions
+	Chats V1CloneChatService
 }
 
 // NewV1CloneService generates a new service that applies the given options to each
@@ -59,13 +61,14 @@ func NewV1CloneService(opts ...option.RequestOption) (r V1CloneService) {
 	r.Gallery = NewV1CloneGalleryService(opts...)
 	r.Integrations = NewV1CloneIntegrationService(opts...)
 	r.Activity = NewV1CloneActivityService(opts...)
+	r.Chats = NewV1CloneChatService(opts...)
 	return
 }
 
 // Returns all clones in the organization, ordered by creation date descending.
 func (r *V1CloneService) List(ctx context.Context, opts ...option.RequestOption) (res *V1CloneListResponse, err error) {
 	opts = slices.Concat(r.options, opts)
-	path := "api/v1/clones"
+	path := "public/v1/clones"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
 	return res, err
 }

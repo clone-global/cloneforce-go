@@ -53,7 +53,7 @@ func (r *V1CloneVoiceService) Generate(ctx context.Context, cloneID string, body
 		err = errors.New("missing required cloneId parameter")
 		return nil, err
 	}
-	path := fmt.Sprintf("api/v1/clones/%s/voice/generate", url.PathEscape(cloneID))
+	path := fmt.Sprintf("public/v1/clones/%s/voice/generate", url.PathEscape(cloneID))
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, &res, opts...)
 	return res, err
 }
