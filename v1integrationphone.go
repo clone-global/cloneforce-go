@@ -40,7 +40,7 @@ func NewV1IntegrationPhoneService(opts ...option.RequestOption) (r V1Integration
 // Searches for available phone numbers via Twilio that can be purchased.
 func (r *V1IntegrationPhoneService) ListAvailable(ctx context.Context, query V1IntegrationPhoneListAvailableParams, opts ...option.RequestOption) (res *V1IntegrationPhoneListAvailableResponse, err error) {
 	opts = slices.Concat(r.options, opts)
-	path := "api/v1/integrations/phone/available"
+	path := "public/v1/integrations/phone/available"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
 	return res, err
 }

@@ -50,7 +50,7 @@ func (r *V1CloneIntegrationMsteamService) Teams(ctx context.Context, integration
 		err = errors.New("missing required integrationId parameter")
 		return nil, err
 	}
-	path := fmt.Sprintf("api/v1/clones/%s/integrations/msteams/%s/teams", url.PathEscape(params.CloneID), url.PathEscape(integrationID))
+	path := fmt.Sprintf("public/v1/clones/%s/integrations/msteams/%s/teams", url.PathEscape(params.CloneID), url.PathEscape(integrationID))
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, params, &res, opts...)
 	return res, err
 }

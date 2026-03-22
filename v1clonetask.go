@@ -48,7 +48,7 @@ func (r *V1CloneTaskService) New(ctx context.Context, cloneID string, body V1Clo
 		err = errors.New("missing required cloneId parameter")
 		return nil, err
 	}
-	path := fmt.Sprintf("api/v1/clones/%s/tasks", url.PathEscape(cloneID))
+	path := fmt.Sprintf("public/v1/clones/%s/tasks", url.PathEscape(cloneID))
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, &res, opts...)
 	return res, err
 }
@@ -64,7 +64,7 @@ func (r *V1CloneTaskService) Get(ctx context.Context, taskID string, query V1Clo
 		err = errors.New("missing required taskId parameter")
 		return nil, err
 	}
-	path := fmt.Sprintf("api/v1/clones/%s/tasks/%s", url.PathEscape(query.CloneID), url.PathEscape(taskID))
+	path := fmt.Sprintf("public/v1/clones/%s/tasks/%s", url.PathEscape(query.CloneID), url.PathEscape(taskID))
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
 	return res, err
 }
@@ -80,7 +80,7 @@ func (r *V1CloneTaskService) Update(ctx context.Context, taskID string, params V
 		err = errors.New("missing required taskId parameter")
 		return nil, err
 	}
-	path := fmt.Sprintf("api/v1/clones/%s/tasks/%s", url.PathEscape(params.CloneID), url.PathEscape(taskID))
+	path := fmt.Sprintf("public/v1/clones/%s/tasks/%s", url.PathEscape(params.CloneID), url.PathEscape(taskID))
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPatch, path, params, &res, opts...)
 	return res, err
 }
@@ -92,7 +92,7 @@ func (r *V1CloneTaskService) List(ctx context.Context, cloneID string, query V1C
 		err = errors.New("missing required cloneId parameter")
 		return nil, err
 	}
-	path := fmt.Sprintf("api/v1/clones/%s/tasks", url.PathEscape(cloneID))
+	path := fmt.Sprintf("public/v1/clones/%s/tasks", url.PathEscape(cloneID))
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
 	return res, err
 }
@@ -108,7 +108,7 @@ func (r *V1CloneTaskService) Delete(ctx context.Context, taskID string, body V1C
 		err = errors.New("missing required taskId parameter")
 		return nil, err
 	}
-	path := fmt.Sprintf("api/v1/clones/%s/tasks/%s", url.PathEscape(body.CloneID), url.PathEscape(taskID))
+	path := fmt.Sprintf("public/v1/clones/%s/tasks/%s", url.PathEscape(body.CloneID), url.PathEscape(taskID))
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodDelete, path, nil, &res, opts...)
 	return res, err
 }

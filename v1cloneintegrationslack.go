@@ -46,7 +46,7 @@ func (r *V1CloneIntegrationSlackService) New(ctx context.Context, cloneID string
 		err = errors.New("missing required cloneId parameter")
 		return nil, err
 	}
-	path := fmt.Sprintf("api/v1/clones/%s/integrations/slack", url.PathEscape(cloneID))
+	path := fmt.Sprintf("public/v1/clones/%s/integrations/slack", url.PathEscape(cloneID))
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, nil, &res, opts...)
 	return res, err
 }
@@ -63,7 +63,7 @@ func (r *V1CloneIntegrationSlackService) Update(ctx context.Context, integration
 		err = errors.New("missing required integrationId parameter")
 		return nil, err
 	}
-	path := fmt.Sprintf("api/v1/clones/%s/integrations/slack/%s", url.PathEscape(params.CloneID), url.PathEscape(integrationID))
+	path := fmt.Sprintf("public/v1/clones/%s/integrations/slack/%s", url.PathEscape(params.CloneID), url.PathEscape(integrationID))
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPatch, path, params, &res, opts...)
 	return res, err
 }

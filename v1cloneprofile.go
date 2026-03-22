@@ -40,26 +40,26 @@ func NewV1CloneProfileService(opts ...option.RequestOption) (r V1CloneProfileSer
 }
 
 // Returns the full profile and aesthetics for a clone.
-func (r *V1CloneProfileService) List(ctx context.Context, cloneID string, opts ...option.RequestOption) (res *CloneProfile, err error) {
+func (r *V1CloneProfileService) Get(ctx context.Context, cloneID string, opts ...option.RequestOption) (res *CloneProfile, err error) {
 	opts = slices.Concat(r.options, opts)
 	if cloneID == "" {
 		err = errors.New("missing required cloneId parameter")
 		return nil, err
 	}
-	path := fmt.Sprintf("api/v1/clones/%s/profile", url.PathEscape(cloneID))
+	path := fmt.Sprintf("public/v1/clones/%s/profile", url.PathEscape(cloneID))
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
 	return res, err
 }
 
 // Updates one or more fields on a clone's profile. Only provided fields are
 // changed.
-func (r *V1CloneProfileService) PatchAll(ctx context.Context, cloneID string, body V1CloneProfilePatchAllParams, opts ...option.RequestOption) (res *CloneProfile, err error) {
+func (r *V1CloneProfileService) Update(ctx context.Context, cloneID string, body V1CloneProfileUpdateParams, opts ...option.RequestOption) (res *CloneProfile, err error) {
 	opts = slices.Concat(r.options, opts)
 	if cloneID == "" {
 		err = errors.New("missing required cloneId parameter")
 		return nil, err
 	}
-	path := fmt.Sprintf("api/v1/clones/%s/profile", url.PathEscape(cloneID))
+	path := fmt.Sprintf("public/v1/clones/%s/profile", url.PathEscape(cloneID))
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPatch, path, body, &res, opts...)
 	return res, err
 }
@@ -190,7 +190,7 @@ func (r *CloneProfileState) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
-type V1CloneProfilePatchAllParams struct {
+type V1CloneProfileUpdateParams struct {
 	AppearanceDesc     param.Opt[string]    `json:"appearanceDesc,omitzero"`
 	Birthdate          param.Opt[time.Time] `json:"birthdate,omitzero" format:"date-time"`
 	CareerDesc         param.Opt[string]    `json:"careerDesc,omitzero"`
@@ -220,10 +220,10 @@ type V1CloneProfilePatchAllParams struct {
 	paramObj
 }
 
-func (r V1CloneProfilePatchAllParams) MarshalJSON() (data []byte, err error) {
-	type shadow V1CloneProfilePatchAllParams
+func (r V1CloneProfileUpdateParams) MarshalJSON() (data []byte, err error) {
+	type shadow V1CloneProfileUpdateParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
-func (r *V1CloneProfilePatchAllParams) UnmarshalJSON(data []byte) error {
+func (r *V1CloneProfileUpdateParams) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }

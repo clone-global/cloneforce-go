@@ -46,7 +46,7 @@ func (r *V1CloneFileService) New(ctx context.Context, cloneID string, body V1Clo
 		err = errors.New("missing required cloneId parameter")
 		return nil, err
 	}
-	path := fmt.Sprintf("api/v1/clones/%s/files", url.PathEscape(cloneID))
+	path := fmt.Sprintf("public/v1/clones/%s/files", url.PathEscape(cloneID))
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, &res, opts...)
 	return res, err
 }
@@ -62,7 +62,7 @@ func (r *V1CloneFileService) Get(ctx context.Context, fileID string, query V1Clo
 		err = errors.New("missing required fileId parameter")
 		return nil, err
 	}
-	path := fmt.Sprintf("api/v1/clones/%s/files/%s", url.PathEscape(query.CloneID), url.PathEscape(fileID))
+	path := fmt.Sprintf("public/v1/clones/%s/files/%s", url.PathEscape(query.CloneID), url.PathEscape(fileID))
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
 	return res, err
 }
@@ -74,7 +74,7 @@ func (r *V1CloneFileService) List(ctx context.Context, cloneID string, opts ...o
 		err = errors.New("missing required cloneId parameter")
 		return nil, err
 	}
-	path := fmt.Sprintf("api/v1/clones/%s/files", url.PathEscape(cloneID))
+	path := fmt.Sprintf("public/v1/clones/%s/files", url.PathEscape(cloneID))
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
 	return res, err
 }
@@ -90,7 +90,7 @@ func (r *V1CloneFileService) Delete(ctx context.Context, fileID string, body V1C
 		err = errors.New("missing required fileId parameter")
 		return nil, err
 	}
-	path := fmt.Sprintf("api/v1/clones/%s/files/%s", url.PathEscape(body.CloneID), url.PathEscape(fileID))
+	path := fmt.Sprintf("public/v1/clones/%s/files/%s", url.PathEscape(body.CloneID), url.PathEscape(fileID))
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodDelete, path, nil, &res, opts...)
 	return res, err
 }

@@ -49,7 +49,7 @@ func (r *V1CloneActivityService) Get(ctx context.Context, activityID string, que
 		err = errors.New("missing required activityId parameter")
 		return nil, err
 	}
-	path := fmt.Sprintf("api/v1/clones/%s/activity/%s", url.PathEscape(query.CloneID), url.PathEscape(activityID))
+	path := fmt.Sprintf("public/v1/clones/%s/activity/%s", url.PathEscape(query.CloneID), url.PathEscape(activityID))
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
 	return res, err
 }
@@ -61,7 +61,7 @@ func (r *V1CloneActivityService) List(ctx context.Context, cloneID string, opts 
 		err = errors.New("missing required cloneId parameter")
 		return nil, err
 	}
-	path := fmt.Sprintf("api/v1/clones/%s/activity", url.PathEscape(cloneID))
+	path := fmt.Sprintf("public/v1/clones/%s/activity", url.PathEscape(cloneID))
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
 	return res, err
 }
@@ -77,7 +77,7 @@ func (r *V1CloneActivityService) Delete(ctx context.Context, activityID string, 
 		err = errors.New("missing required activityId parameter")
 		return nil, err
 	}
-	path := fmt.Sprintf("api/v1/clones/%s/activity/%s", url.PathEscape(body.CloneID), url.PathEscape(activityID))
+	path := fmt.Sprintf("public/v1/clones/%s/activity/%s", url.PathEscape(body.CloneID), url.PathEscape(activityID))
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodDelete, path, nil, &res, opts...)
 	return res, err
 }
