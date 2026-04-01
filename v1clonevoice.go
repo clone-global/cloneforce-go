@@ -4,7 +4,6 @@ package cloneforce
 
 import (
 	"context"
-	"encoding/json"
 	"errors"
 	"fmt"
 	"net/http"
@@ -98,5 +97,5 @@ func (r V1CloneVoiceGenerateParams) MarshalJSON() (data []byte, err error) {
 	return shimjson.Marshal(r.GenerateRequest)
 }
 func (r *V1CloneVoiceGenerateParams) UnmarshalJSON(data []byte) error {
-	return json.Unmarshal(data, &r.GenerateRequest)
+	return apijson.UnmarshalRoot(data, r)
 }
