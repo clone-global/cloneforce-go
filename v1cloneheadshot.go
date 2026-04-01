@@ -4,13 +4,13 @@ package cloneforce
 
 import (
 	"context"
-	"encoding/json"
 	"errors"
 	"fmt"
 	"net/http"
 	"net/url"
 	"slices"
 
+	"github.com/clone-global/cloneforce-go/internal/apijson"
 	shimjson "github.com/clone-global/cloneforce-go/internal/encoding/json"
 	"github.com/clone-global/cloneforce-go/internal/requestconfig"
 	"github.com/clone-global/cloneforce-go/option"
@@ -64,5 +64,5 @@ func (r V1CloneHeadshotGenerateParams) MarshalJSON() (data []byte, err error) {
 	return shimjson.Marshal(r.GenerateRequest)
 }
 func (r *V1CloneHeadshotGenerateParams) UnmarshalJSON(data []byte) error {
-	return json.Unmarshal(data, &r.GenerateRequest)
+	return apijson.UnmarshalRoot(data, r)
 }
