@@ -7,6 +7,7 @@ import (
 	"net/http"
 	"os"
 	"slices"
+	"strings"
 
 	"github.com/clone-global/cloneforce-go/internal/requestconfig"
 	"github.com/clone-global/cloneforce-go/option"
@@ -29,6 +30,14 @@ func DefaultClientOptions() []option.RequestOption {
 	}
 	if o, ok := os.LookupEnv("CLONEFORCE_API_KEY"); ok {
 		defaults = append(defaults, option.WithAPIKey(o))
+	}
+	if o, ok := os.LookupEnv("CLONEFORCE_CUSTOM_HEADERS"); ok {
+		for _, line := range strings.Split(o, "\n") {
+			colon := strings.Index(line, ":")
+			if colon >= 0 {
+				defaults = append(defaults, option.WithHeader(strings.TrimSpace(line[:colon]), strings.TrimSpace(line[colon+1:])))
+			}
+		}
 	}
 	return defaults
 }
