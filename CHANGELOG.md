@@ -1,5 +1,29 @@
 # Changelog
 
+## 0.3.0 (2026-07-18)
+
+Full Changelog: [v0.2.0...v0.3.0](https://github.com/clone-global/cloneforce-go/compare/v0.2.0...v0.3.0)
+
+### Features
+
+* **client:** optimize json encoder for internal types ([7732587](https://github.com/clone-global/cloneforce-go/commit/7732587833c2c8b504a82546e501de601fa91a54))
+* **go:** add default http client with timeout ([d69b81a](https://github.com/clone-global/cloneforce-go/commit/d69b81a43f671eb06ed02b15a2bd74023c1266cf))
+* **stlc:** configurable CI runner and private-production-repo support in workflow templates ([277e5d0](https://github.com/clone-global/cloneforce-go/commit/277e5d06ef675c470e3a3c9512d5e0aa5eca654a))
+* support setting headers via env ([15c5181](https://github.com/clone-global/cloneforce-go/commit/15c51814cbcd5a8ffee39ef2f32b1ac96522c38f))
+
+
+### Bug Fixes
+
+* fix issue with unmarshaling in some cases ([dec9119](https://github.com/clone-global/cloneforce-go/commit/dec911915d54fcb727b3d32d373f74896a5f001e))
+* **go:** avoid panic when http.DefaultTransport is wrapped ([4e57aaf](https://github.com/clone-global/cloneforce-go/commit/4e57aafd58c9c045c646cc69c8cf10f1e41bb18d))
+
+
+### Chores
+
+* avoid embedding reflect.Type for dead code elimination ([a5f7b19](https://github.com/clone-global/cloneforce-go/commit/a5f7b1921fda5c29367ad19de6ad730d69f3b1fd))
+* **internal:** more robust bootstrap script ([c207fd3](https://github.com/clone-global/cloneforce-go/commit/c207fd31031d46e35ade5fdb03b6de7786be858a))
+* redact api-key headers in debug logs ([29d93da](https://github.com/clone-global/cloneforce-go/commit/29d93daecd3fb297a0d7c7efdd9ebcd5a62820a8))
+
 ## 0.2.0 (2026-03-29)
 
 Full Changelog: [v0.1.0...v0.2.0](https://github.com/clone-global/cloneforce-go/compare/v0.1.0...v0.2.0)
