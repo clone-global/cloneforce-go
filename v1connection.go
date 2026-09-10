@@ -201,7 +201,12 @@ func (r *ConnectionStatus) UnmarshalJSON(data []byte) error {
 
 type OAuthProvision struct {
 	ConnectionID string `json:"connectionId" api:"required"`
-	// URL to present to the user to complete the OAuth consent flow
+	// Deprecated. This URL pointed at the legacy v1 web app's OAuth consent flow,
+	// retired in September 2026, and no longer resolves. Provision OAuth connections
+	// in Studio instead. The field is kept so existing clients keep parsing the
+	// response.
+	//
+	// Deprecated: deprecated
 	ProvisionURL string `json:"provisionUrl" api:"required"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
