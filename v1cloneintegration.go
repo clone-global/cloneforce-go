@@ -357,6 +357,11 @@ func (r *V1CloneIntegrationNewPhoneResponse) UnmarshalJSON(data []byte) error {
 }
 
 type V1CloneIntegrationGetSetupURLResponse struct {
+	// Deprecated. This URL pointed at the legacy v1 web app, retired in September
+	// 2026, and no longer resolves to a setup page. Complete the integration setup in
+	// Studio instead. The field is kept so existing clients keep parsing the response.
+	//
+	// Deprecated: deprecated
 	SetupURL string `json:"setupUrl" api:"required"`
 	Type     string `json:"type" api:"required"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
